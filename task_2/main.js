@@ -19,22 +19,12 @@ async function makeRequest(url, method='GET'){
     }
 }
 
-function onLoadDetai(id){
-    url = baseUrl +;
-    try{
-        let data = await makeRequest(url);
-        data.forEach(onPersonLoad);
-    } catch(error) {
-        console.log(error)
-    }  
-}
-
 function onPersonLoad({char_id, name, birthday, img, status}){
     let card = document.createElement('div');
     card.classList.add('card', 'col');
     card.style.width = '15rem';
     let clickImg = document.createElement('a');
-    clickImg.href = onLoadDetai(char_id);
+    clickImg.href = `character.html?id=${char_id}`;
     let imgCard = document.createElement('img');
     imgCard.src = img;
     imgCard.classList.add('card-img-top');
