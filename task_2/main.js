@@ -33,14 +33,8 @@ function onPersonLoad({char_id, name, birthday, img, status}){
     let cardBody = document.createElement('div');
     cardBody.classList.add('card-body');
     let nameText = document.createElement('h5');
-    nameText.innerText = name;
-    let birthdayText = document.createElement('p');
-    birthdayText.innerText = birthday;
-    let statusText = document.createElement('p');
-    statusText.innerText = status;
+    nameText.innerText = name;    
     cardBody.append(nameText);
-    cardBody.append(birthdayText);
-    cardBody.append(statusText);
     card.append(clickImg);
     card.append(cardBody);
     row.append(card);              
