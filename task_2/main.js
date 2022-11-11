@@ -1,6 +1,11 @@
 const baseUrl = 'https://www.breakingbadapi.com/api/characters';
 const body = document.getElementsByTagName('body')[0];
 let container = document.createElement('div');
+container.classList.add('container', 'text-center');
+let row = document.createElement('div');
+row.classList.add('row', 'row-cols-6');
+container.append(row);
+body.append(container); 
 
 
 async function makeRequest(url, method='GET'){
@@ -14,12 +19,22 @@ async function makeRequest(url, method='GET'){
     }
 }
 
-function onPersonLoad({name, birthday, img}){
+function onLoadDetai(id){
+    url = baseUrl +;
+    try{
+        let data = await makeRequest(url);
+        data.forEach(onPersonLoad);
+    } catch(error) {
+        console.log(error)
+    }  
+}
+
+function onPersonLoad({char_id, name, birthday, img, status}){
     let card = document.createElement('div');
-    card.classList.add('card');
-    card.style.width = '12rem';
+    card.classList.add('card', 'col');
+    card.style.width = '15rem';
     let clickImg = document.createElement('a');
-    clickImg.href = '#';
+    clickImg.href = onLoadDetai(char_id);
     let imgCard = document.createElement('img');
     imgCard.src = img;
     imgCard.classList.add('card-img-top');
@@ -31,12 +46,14 @@ function onPersonLoad({name, birthday, img}){
     nameText.innerText = name;
     let birthdayText = document.createElement('p');
     birthdayText.innerText = birthday;
+    let statusText = document.createElement('p');
+    statusText.innerText = status;
     cardBody.append(nameText);
     cardBody.append(birthdayText);
+    cardBody.append(statusText);
     card.append(clickImg);
     card.append(cardBody);
-    container.append(card);  
-    body.append(container);          
+    row.append(card);              
 }
 
 async function onload(){   
@@ -50,6 +67,3 @@ async function onload(){
 }
 
 window.addEventListener('load', onload);
-// $.get(baseUrl, function(data){
-//     $('#data').text(data.name);
-// })
