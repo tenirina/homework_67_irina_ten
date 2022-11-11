@@ -48,7 +48,7 @@ async function onDetailLoad(data){
     statusText.innerText = 'Status: ' + data.status;
     let nicknameText = document.createElement('p');
     nicknameText.innerText = 'Nickname: ' + data.nickname;
-    let portrayedText = document.createElement('spam');
+    let portrayedText = document.createElement('p');
     portrayedText.innerText = 'Portrayed: ' + data.portrayed;
     let categoryText = document.createElement('p');
     categoryText.innerText = 'Category: ' + data.category;
@@ -58,7 +58,6 @@ async function onDetailLoad(data){
     cardBody.append(nicknameText);
     cardBody.append(portrayedText);
     cardBody.append(categoryText);
-
     cardRow.append(cardBody);
     card.append(cardRow);
     container.append(card);              
